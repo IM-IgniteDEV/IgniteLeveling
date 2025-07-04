@@ -2,6 +2,7 @@ package com.ignitedev.igniteLeveling.base.stats;
 
 import com.ignitedev.igniteLeveling.base.player.LevelingPlayer;
 import com.ignitedev.igniteLeveling.config.LevelingConfiguration;
+import com.ignitedev.igniteLeveling.event.PlayerGainExperienceEvent;
 import com.ignitedev.igniteLeveling.event.PlayerGainProgressEvent;
 import com.ignitedev.igniteLeveling.event.PlayerLevelUpEvent;
 import com.twodevsstudio.simplejsonconfig.interfaces.Autowired;
@@ -22,6 +23,7 @@ public class Statistic {
   private long experience = 0;
 
   public void incrementExperience(LevelingPlayer player, long experienceToAdd) {
+    long oldExperience = this.experience;
     this.experience = this.experience + experienceToAdd;
     int levelsToGain = 0;
 
@@ -37,6 +39,10 @@ public class Statistic {
     if (levelsToGain > 0) {
       levelUp(player, levelsToGain);
     }
+    Bukkit.getPluginManager()
+        .callEvent(
+            new PlayerGainExperienceEvent(
+                player, oldExperience, this.experience, levelsToGain > 0, this.level));
   }
 
   public void incrementProgress(LevelingPlayer player, int progressToAdd) {

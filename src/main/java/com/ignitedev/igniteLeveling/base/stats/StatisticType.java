@@ -15,7 +15,8 @@ public enum StatisticType {
   @Nullable
   public static StatisticType getStatisticTypeByName(String name) {
     for (StatisticType value : StatisticType.values()) {
-      if (value.name().equalsIgnoreCase(name) || value.name().toUpperCase().contains(name.toUpperCase())) {
+      if (value.name().equalsIgnoreCase(name)
+          || value.name().toUpperCase().contains(name.toUpperCase())) {
         return value;
       }
     }

@@ -58,11 +58,12 @@ public class LevelingPlayer {
 
   public void grantBooster(IgniteLeveling plugin, int duration, double multiplier) {
     MessageUtility.send(
-        getPlayer(), configuration.getPrefix() +
-        configuration
-            .getBoosterApplied()
-            .replace("{DURATION}", String.valueOf(duration))
-            .replace("{MULTIPLIER}", String.valueOf(multiplier)));
+        getPlayer(),
+        configuration.getPrefix()
+            + configuration
+                .getBoosterApplied()
+                .replace("{DURATION}", String.valueOf(duration))
+                .replace("{MULTIPLIER}", String.valueOf(multiplier)));
 
     this.boosterDuration = this.boosterDuration + duration;
     this.boosterMultiplier = this.boosterMultiplier * multiplier;

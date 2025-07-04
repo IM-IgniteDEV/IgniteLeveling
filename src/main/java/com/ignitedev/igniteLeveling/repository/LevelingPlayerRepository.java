@@ -44,7 +44,8 @@ public class LevelingPlayerRepository {
           simpleMongo
               .get()
               .getObjectSync(
-                  simpleMongo.getDatabase().getCollection("players"), new Document("_uuid", uuid.toString()))
+                  simpleMongo.getDatabase().getCollection("players"),
+                  new Document("_uuid", uuid.toString()))
               .map(
                   document ->
                       Serializer.getInst()
@@ -77,23 +78,26 @@ public class LevelingPlayerRepository {
 
   public LevelingPlayer getTopPlayer(int order, StatisticType statisticType) {
     MongoCollection<Document> players = simpleMongo.getDatabase().getCollection("players");
-    Document sort =
-        new Document("data.statisticMap." + statisticType.name() + ".level", -1);
+    Document sort = new Document("data.statisticMap." + statisticType.name() + ".level", -1);
 
     Document topPlayerDoc = players.find().sort(sort).skip(order).limit(1).first();
 
     if (topPlayerDoc == null) {
       return null;
     }
-    return Serializer.getInst().getGson().fromJson(((String) topPlayerDoc.get("data")), LevelingPlayer.class);
+    return Serializer.getInst()
+        .getGson()
+        .fromJson(((String) topPlayerDoc.get("data")), LevelingPlayer.class);
   }
 
   public int getPlayerRanking(LevelingPlayer player, StatisticType statisticType) {
     MongoCollection<Document> players = simpleMongo.getDatabase().getCollection("players");
     int playerLevel = player.getStatisticMap().get(statisticType).getLevel();
 
-    Document filter = new Document("data.statisticMap." + statisticType.name() + ".level",
-        new Document("$gt", playerLevel));
+    Document filter =
+        new Document(
+            "data.statisticMap." + statisticType.name() + ".level",
+            new Document("$gt", playerLevel));
     long betterPlayersCount = players.countDocuments(filter);
 
     return (int) betterPlayersCount + 1;

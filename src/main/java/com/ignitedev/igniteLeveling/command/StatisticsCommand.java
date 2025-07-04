@@ -12,7 +12,6 @@ import com.ignitedev.igniteLeveling.repository.LevelingPlayerRepository;
 import com.twodevsstudio.simplejsonconfig.interfaces.Autowired;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 @CommandAlias("statistics|stats")
@@ -83,7 +82,7 @@ public class StatisticsCommand extends BaseCommand {
           formattedMessage = formattedMessage.replace("{TOP_" + (i + 1) + "}", "N/A");
           break;
         }
-        String topPlayerName = Bukkit.getOfflinePlayer(topPlayer.getUuid()).getName();
+        String topPlayerName = topPlayer.getOfflinePlayer().getName();
 
         if (topPlayerName == null) {
           topPlayerName = "N/A";

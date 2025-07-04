@@ -42,8 +42,7 @@ public class LevelingConfiguration extends Config {
   private String noActiveBooster = "You have no active booster";
   private String boosterApplied =
       "Your booster {MULTIPLIER} has been applied for {DURATION} minutes";
-  private String boosterInfo =
-      "Your booster {MULTIPLIER} is active. Time left: {TIME_LEFT}";
+  private String boosterInfo = "Your booster {MULTIPLIER} is active. Time left: {TIME_LEFT}";
   private List<String> checkStatsMessage =
       List.of(
           "===== {PLAYER} Profile =====",

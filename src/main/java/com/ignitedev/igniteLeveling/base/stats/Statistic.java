@@ -2,6 +2,7 @@ package com.ignitedev.igniteLeveling.base.stats;
 
 import com.ignitedev.igniteLeveling.base.player.LevelingPlayer;
 import com.ignitedev.igniteLeveling.config.LevelingConfiguration;
+import com.ignitedev.igniteLeveling.event.PlayerGainProgressEvent;
 import com.ignitedev.igniteLeveling.event.PlayerLevelUpEvent;
 import com.twodevsstudio.simplejsonconfig.interfaces.Autowired;
 import java.util.Map;
@@ -39,6 +40,7 @@ public class Statistic {
   }
 
   public void incrementProgress(LevelingPlayer player, int progressToAdd) {
+    int oldProgress = this.currentProgress;
     this.currentProgress = this.currentProgress + progressToAdd;
     int requiredActions = getStatisticValue(configuration.getStatisticRequiredActions());
 
@@ -50,6 +52,10 @@ public class Statistic {
         incrementExperience(player, Math.round(experienceReward * player.getBoosterMultiplier()));
       }
       this.currentProgress = this.currentProgress % requiredActions;
+      Bukkit.getPluginManager()
+          .callEvent(
+              new PlayerGainProgressEvent(
+                  player, oldProgress, this.currentProgress, times > 0, this.experience));
     }
   }
 

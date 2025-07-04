@@ -95,6 +95,7 @@
             <groupId>com.github.2DevsStudio</groupId>
             <artifactId>Aparecium</artifactId>
             <version>6633e49522</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.twodevsstudio</groupId>

@@ -20,12 +20,6 @@ public final class IgniteLeveling extends JavaPlugin {
 
   @Getter private SimpleMongo simpleMongo;
 
-  /* TODO
-
-   - add more statistic and system to make it disableable
-
-  */
-
   @Override
   public void onEnable() {
     SimpleJSONConfig.INSTANCE.register(this);
@@ -52,7 +46,7 @@ public final class IgniteLeveling extends JavaPlugin {
     pluginManager.registerEvents(new FishingListener(levelingPlayerRepository), this);
     pluginManager.registerEvents(new PlayerDeathListener(levelingPlayerRepository), this);
     pluginManager.registerEvents(new PlayerJoinListener(this, levelingPlayerRepository), this);
-    pluginManager.registerEvents(new PlayerMoveListener(), this);
+    pluginManager.registerEvents(new PlayerMoveListener(levelingPlayerRepository), this);
     pluginManager.registerEvents(new PlayerQuitListener(levelingPlayerRepository), this);
   }
 

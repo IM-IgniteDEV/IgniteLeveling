@@ -63,6 +63,215 @@ Edit `plugins/IgniteLeveling/leveling.json` to adjust experience values, rewards
 
 ---
 
+## Configuration
+
+```jsonc
+{
+  "databaseURL": "", // MongoDB database URL
+  "databaseName": "leveling", // Database name
+
+  "afkCheck": true, // If true, plugin checks for AFK players and does not count their actions
+  "autoSaveInterval": 10, // Auto save interval in minutes, 0 to disable auto save
+  "autoSaveMessage": "&aAuto save completed successfully", // Auto save message to broadcast, empty to disable
+
+  "statisticEnabled": {
+    "BLOCKS_BROKEN": true,
+    "BLOCKS_PLACED": true,
+    "BLOCKS_WALKED": true,
+    "FISHED_AMOUNT": true,
+    "MOBS_KILLED": true,
+    "PLAYERS_KILLED": true,
+    "PLAYER_DEATHS": true,
+    "PLAY_TIME": true
+  },
+
+  "prefix": "&7[&6Leveling&7] &5", // Plugin message prefix
+  "confirmationMessage": "Your action has been confirmed",
+  "boosterFinished": "Your booster has finished",
+  "noActiveBooster": "You have no active booster",
+  "boosterApplied": "Your booster {MULTIPLIER} has been applied for {DURATION} minutes",
+  "boosterInfo": "Your booster {MULTIPLIER} is active. Time left: {TIME_LEFT}",
+
+  "checkStatsMessage": [
+    "===== {PLAYER} Profile =====",
+    "Booster: {BOOSTER} (Time Left: {BOOSTER_TIME_LEFT})",
+    "Blocks Broken: {BLOCKS_BROKEN_LEVEL} LVL (Experience: {BLOCKS_BROKEN_XP} / {BLOCKS_BROKEN_REQUIRED_XP})",
+    "Blocks Placed: {BLOCKS_PLACED_LEVEL} LVL (Experience: {BLOCKS_PLACED_XP} / {BLOCKS_PLACED_REQUIRED_XP})",
+    "Fish Caught: {FISHED_AMOUNT_LEVEL} LVL (Experience: {FISHED_AMOUNT_XP} / {FISHED_AMOUNT_REQUIRED_XP})",
+    "Mobs Killed: {MOBS_KILLED_LEVEL} LVL (Experience: {MOBS_KILLED_XP} / {MOBS_KILLED_REQUIRED_XP})",
+    "Players Killed: {PLAYERS_KILLED_LEVEL} LVL (Experience: {PLAYERS_KILLED_XP} / {PLAYERS_KILLED_REQUIRED_XP})",
+    "Deaths: {PLAYER_DEATHS_LEVEL} LVL (Experience: {PLAYER_DEATHS_XP} / {PLAYER_DEATHS_REQUIRED_XP})",
+    "Play Time: {PLAY_TIME_LEVEL} LVL (Experience: {PLAY_TIME_XP} / {PLAY_TIME_REQUIRED_XP})"
+  ],
+  "topPlayersMessage": [
+    "===== Top Players {STATISTIC_TYPE} =====",
+    "1. {TOP_1} - {TOP_1_LEVEL}",
+    "2. {TOP_2} - {TOP_2_LEVEL}",
+    "3. {TOP_3} - {TOP_3_LEVEL}"
+  ],
+  "playerTopStatistics": [
+    "===== {PLAYER} Top Statistics =====",
+    "Blocks Broken: {BLOCKS_BROKEN_LEVEL} LVL | Top #{BLOCKS_BROKEN_TOP}",
+    "Blocks Placed: {BLOCKS_PLACED_LEVEL} LVL | Top #{BLOCKS_PLACED_TOP}",
+    "Fish Caught: {FISHED_AMOUNT_LEVEL} LVL | Top #{FISHED_AMOUNT_TOP}",
+    "Mobs Killed: {MOBS_KILLED_LEVEL} LVL | Top #{MOBS_KILLED_TOP}",
+    "Players Killed: {PLAYERS_KILLED_LEVEL} LVL | Top #{PLAYERS_KILLED_TOP}",
+    "Deaths: {PLAYER_DEATHS_LEVEL} LVL | Top #{PLAYER_DEATHS_TOP}",
+    "Play Time: {PLAY_TIME_LEVEL} LVL | Top #{PLAY_TIME_TOP}"
+  ],
+
+  "noPermission": "No permission to use this command",
+  "playerNotFound": "Player not found",
+  "notNumericArgument": "This argument must be numeric",
+  "noTimeSuffix": "Argument must have a time suffix (m (minutes), h (hours))",
+
+  "placeBlacklist": [
+    "DIRT",
+    "GRASS_BLOCK",
+    "COARSE_DIRT",
+    "PODZOL",
+    "MYCELIUM"
+  ],
+  "destroyBlacklist": [
+    "DIRT",
+    "GRASS_BLOCK",
+    "COARSE_DIRT",
+    "PODZOL",
+    "MYCELIUM"
+  ],
+
+  "statisticExperienceReward": { // How much experience players gain per action
+    "BLOCKS_BROKEN": 1,
+    "BLOCKS_PLACED": 1,
+    "BLOCKS_WALKED": 1,
+    "FISHED_AMOUNT": 10,
+    "MOBS_KILLED": 20,
+    "PLAYERS_KILLED": 100,
+    "PLAYER_DEATHS": 0,
+    "PLAY_TIME": 50
+  },
+
+  "statisticRequiredActions": { // How many actions are required to gain experience (e.g. 10 for every 10 placed blocks)
+    "BLOCKS_BROKEN": 1,
+    "BLOCKS_PLACED": 50,
+    "BLOCKS_WALKED": 50,
+    "FISHED_AMOUNT": 10,
+    "MOBS_KILLED": 20,
+    "PLAYERS_KILLED": 100,
+    "PLAYER_DEATHS": 0,
+    "PLAY_TIME": 50
+  },
+
+  "levelsRequiredExperience": { // How much experience is required for each level
+    "BLOCKS_BROKEN": { "1": 100, "2": 500, "3": 1000 },
+    "BLOCKS_PLACED": { "1": 100, "2": 500, "3": 1000 },
+    "BLOCKS_WALKED": { "1": 100, "2": 500, "3": 1000 },
+    "FISHED_AMOUNT": { "1": 100, "2": 500, "3": 1000 },
+    "MOBS_KILLED": { "1": 100, "2": 500, "3": 1000 },
+    "PLAYERS_KILLED": { "1": 100, "2": 500, "3": 1000 },
+    "PLAYER_DEATHS": { "1": 100, "2": 500, "3": 1000 },
+    "PLAY_TIME": { "1": 100, "2": 500, "3": 1000 }
+  },
+
+  "levelsRewards": {
+    "1": [
+      {
+        "items": [
+          {
+            "==": "org.bukkit.inventory.ItemStack",
+            "v": 2230,
+            "type": "DIAMOND",
+            "amount": 1
+          },
+          {
+            "==": "org.bukkit.inventory.ItemStack",
+            "v": 2230,
+            "type": "GOLDEN_APPLE",
+            "amount": 1
+          }
+        ],
+        "broadcastCommands": [
+          "broadcast {PLAYER} got first level, well done!"
+        ],
+        "randomCommands": [
+          "say one of that commands {PLAYER}",
+          "say will be execcuted",
+          "say Randomly",
+          "say This is to give you ",
+          "say chance to create random rewards"
+        ],
+        "messages": [
+          "You got first level, well done! {PLAYER}"
+        ]
+      }
+    ],
+    "2": [
+      {
+        "items": [
+          {
+            "==": "org.bukkit.inventory.ItemStack",
+            "v": 2230,
+            "type": "IRON_CHESTPLATE",
+            "amount": 1
+          },
+          {
+            "==": "org.bukkit.inventory.ItemStack",
+            "v": 2230,
+            "type": "GOLDEN_APPLE",
+            "amount": 1
+          }
+        ],
+        "broadcastCommands": [
+          "broadcast {PLAYER} got second level, well done!"
+        ],
+        "randomCommands": [
+          "say one of that commands {PLAYER}",
+          "say will be execcuted",
+          "say Randomly",
+          "say This is to give you ",
+          "say chance to create random rewards"
+        ],
+        "messages": [
+          "You got second level, well done! {PLAYER}"
+        ]
+      }
+    ],
+    "3": [
+      {
+        "items": [
+          {
+            "==": "org.bukkit.inventory.ItemStack",
+            "v": 2230,
+            "type": "DIAMOND_SWORD",
+            "amount": 1
+          },
+          {
+            "==": "org.bukkit.inventory.ItemStack",
+            "v": 2230,
+            "type": "GOLDEN_APPLE",
+            "amount": 1
+          }
+        ],
+        "broadcastCommands": [
+          "broadcast {PLAYER} got third level, well done!"
+        ],
+        "randomCommands": [
+          "say one of that commands {PLAYER}",
+          "say will be execcuted",
+          "say Randomly",
+          "say This is to give you ",
+          "say chance to create random rewards"
+        ],
+        "messages": [
+          "You got third level, well done! {PLAYER}"
+        ]
+      }
+    ]
+  }
+}
+```
+---
+
 ## Placeholders
 
 Supports PlaceholderAPI placeholders such as:
@@ -157,7 +366,7 @@ IgniteLevelingAPI.getInstance().revokeBooster(player);
 IgniteLeveling exposes several events you can listen to in your plugin:
 
 - `PlayerLevelUpEvent` — fired when a player levels up in any statistic
-- 'PlayerGainProgressEvent` — fired when a player gains progress in a statistic'
+- `PlayerGainProgressEvent` — fired when a player gains progress in a statistic
 - `PlayerGainExperienceEvent` — fired when a player gains experience in a statistic
 
 ---

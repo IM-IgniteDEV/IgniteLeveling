@@ -16,12 +16,18 @@ public class StatisticReward {
   private final List<String> message;
 
   public void grantReward(Player player) {
-    items.forEach(itemStack -> player.getInventory().addItem(itemStack));
-    commands.forEach(
-        command ->
-            Bukkit.dispatchCommand(
-                Bukkit.getConsoleSender(), command.replace("{PLAYER}", player.getName())));
-    message.forEach(
-        message -> MessageUtility.send(player, message.replace("{PLAYER}", player.getName())));
+    if (items != null) {
+      items.forEach(itemStack -> player.getInventory().addItem(itemStack));
+    }
+    if (commands != null) {
+      commands.forEach(
+          command ->
+              Bukkit.dispatchCommand(
+                  Bukkit.getConsoleSender(), command.replace("{PLAYER}", player.getName())));
+    }
+    if (message != null) {
+      message.forEach(
+          message -> MessageUtility.send(player, message.replace("{PLAYER}", player.getName())));
+    }
   }
 }

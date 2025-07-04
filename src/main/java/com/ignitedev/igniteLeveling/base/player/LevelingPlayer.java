@@ -6,9 +6,11 @@ import com.ignitedev.igniteLeveling.base.stats.Statistic;
 import com.ignitedev.igniteLeveling.base.stats.StatisticType;
 import com.ignitedev.igniteLeveling.config.LevelingConfiguration;
 import com.ignitedev.igniteLeveling.task.BoosterTimeTask;
+import com.ignitedev.igniteLeveling.task.TrackPlayerTimeTask;
 import com.twodevsstudio.simplejsonconfig.interfaces.Autowired;
 import lombok.Data;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
@@ -36,6 +38,8 @@ public class LevelingPlayer {
   private Map<StatisticType, Statistic> statisticMap = new HashMap<>();
 
   private transient BoosterTimeTask boosterTimeTask;
+  private transient TrackPlayerTimeTask trackPlayerTimeTask;
+  private transient Location lastKnownLocation;
 
   public LevelingPlayer(UUID uuid) {
     this.uuid = uuid;

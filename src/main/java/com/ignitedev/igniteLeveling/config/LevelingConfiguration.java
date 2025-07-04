@@ -20,6 +20,8 @@ public class LevelingConfiguration extends Config {
   private String databaseURL = "";
   private String databaseName = "leveling";
 
+  private boolean afkCheck = true;
+
   private Map<StatisticType, Boolean> statisticEnabled =
       Map.of(
           StatisticType.BLOCKS_BROKEN, true,

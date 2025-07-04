@@ -4,6 +4,7 @@ import com.ignitedev.igniteLeveling.IgniteLeveling;
 import com.ignitedev.igniteLeveling.base.player.LevelingPlayer;
 import com.ignitedev.igniteLeveling.repository.LevelingPlayerRepository;
 import com.ignitedev.igniteLeveling.task.BoosterTimeTask;
+import com.ignitedev.igniteLeveling.task.TrackPlayerTimeTask;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -27,5 +28,6 @@ public class PlayerJoinListener implements Listener {
     // we are running a booster ticking task when a player joins, since it is not counting time when
     // player is offline
     new BoosterTimeTask(byUUID).runTaskTimer(igniteLeveling, 0L, 20L * 60);
+    new TrackPlayerTimeTask(byUUID).runTaskTimer(igniteLeveling, 0L, 20L * 60);
   }
 }

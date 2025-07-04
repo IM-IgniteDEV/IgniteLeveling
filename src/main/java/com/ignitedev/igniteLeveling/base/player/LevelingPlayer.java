@@ -5,6 +5,7 @@ import com.ignitedev.igniteLeveling.IgniteLeveling;
 import com.ignitedev.igniteLeveling.base.stats.Statistic;
 import com.ignitedev.igniteLeveling.base.stats.StatisticType;
 import com.ignitedev.igniteLeveling.config.LevelingConfiguration;
+import com.ignitedev.igniteLeveling.repository.LevelingPlayerRepository;
 import com.ignitedev.igniteLeveling.task.BoosterTimeTask;
 import com.ignitedev.igniteLeveling.task.TrackPlayerTimeTask;
 import com.twodevsstudio.simplejsonconfig.interfaces.Autowired;
@@ -24,6 +25,8 @@ public class LevelingPlayer {
 
   @Autowired private static LevelingConfiguration configuration;
 
+  private final LevelingPlayerRepository repository;
+
   // * Base data
 
   private final UUID uuid;
@@ -41,8 +44,9 @@ public class LevelingPlayer {
   private transient TrackPlayerTimeTask trackPlayerTimeTask;
   private transient Location lastKnownLocation;
 
-  public LevelingPlayer(UUID uuid) {
+  public LevelingPlayer(UUID uuid, LevelingPlayerRepository repository) {
     this.uuid = uuid;
+    this.repository = repository;
     Arrays.stream(StatisticType.values())
         .forEach(
             statisticType ->
@@ -74,6 +78,7 @@ public class LevelingPlayer {
 
     this.boosterTimeTask = new BoosterTimeTask(this);
     this.boosterTimeTask.runTaskTimer(plugin, 0, 20L * 60);
+    repository.save(this);
   }
 
   public void revokeBooster() {
@@ -84,5 +89,6 @@ public class LevelingPlayer {
       this.boosterTimeTask.cancel();
       this.boosterTimeTask = null;
     }
+    repository.save(this);
   }
 }

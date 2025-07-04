@@ -27,7 +27,7 @@ public class LevelingPlayerRepository {
     LevelingPlayer byUUID = findByUUID(uuid);
 
     if (byUUID == null) {
-      LevelingPlayer levelingPlayer = new LevelingPlayer(uuid);
+      LevelingPlayer levelingPlayer = new LevelingPlayer(uuid, this);
       cache(levelingPlayer);
       save(levelingPlayer);
       return levelingPlayer;

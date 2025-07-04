@@ -20,7 +20,14 @@ public class LevelingConfiguration extends Config {
   private String databaseURL = "";
   private String databaseName = "leveling";
 
+  @Comment("If true, plugin checks for AFK players and does not count their actions")
   private boolean afkCheck = true;
+
+  @Comment("Auto save interval in minutes, 0 to disable auto save")
+  private int autoSaveInterval = 10;
+
+  @Comment("Auto save message to broadcast, empty to disable")
+  private String autoSaveMessage = "&aAuto save completed successfully";
 
   private Map<StatisticType, Boolean> statisticEnabled =
       Map.of(
@@ -167,7 +174,4 @@ public class LevelingConfiguration extends Config {
                       new ItemStack(Material.GOLDEN_APPLE, 1)),
                   List.of("broadcast {PLAYER} got third level, well done!"),
                   List.of("You got third level, well done! {PLAYER}"))));
-
-  private int afkDistanceBlocks = 3;
-  private int refreshTaskInterval = 100; // in seconds
 }

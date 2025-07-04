@@ -42,9 +42,13 @@ public class Statistic {
     this.currentProgress = this.currentProgress + progressToAdd;
     int requiredActions = getStatisticValue(configuration.getStatisticRequiredActions());
 
-    if (this.currentProgress % requiredActions == 0) {
+    if (this.currentProgress >= requiredActions) {
       int experienceReward = getStatisticValue(configuration.getStatisticExperienceReward());
-      incrementExperience(player, Math.round(experienceReward * player.getBoosterMultiplier()));
+      int times = this.currentProgress / requiredActions;
+
+      for (int i = 0; i < times; i++) {
+        incrementExperience(player, Math.round(experienceReward * player.getBoosterMultiplier()));
+      }
       this.currentProgress = this.currentProgress % requiredActions;
     }
   }

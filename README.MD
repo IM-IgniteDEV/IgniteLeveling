@@ -24,14 +24,32 @@ Edit `plugins/IgniteLeveling/leveling.json` to adjust experience values, rewards
 
 ## Commands
 
-- `/booster` — View or manage boosters
-- `/booster activate <player> <duration> <multiplier>` — Activate a booster for a player
-- `/booster revoke <player>` — Revoke a player's booster
-- `/statistics` or `/stats` — View your statistics
-- `/statistics <player>` — View another player's statistics
-- `/statistics top <statisticType>` — Show top players for a statistic
-- `/statistics top <player>` — Show a player's top rankings
+- `/booster` — View or manage boosters  
+**Permission:** `igniteleveling.command.booster`
 
+
+- `/booster activate <player> <duration> <multiplier>` — Activate a booster for a player  
+**Permission:** `igniteleveling.command.booster.activate`
+
+
+- `/booster revoke <player>` — Revoke a player's booster  
+  **Permission:** `igniteleveling.command.booster.revoke`
+
+
+- `/statistics` or `/stats` — View your statistics  
+  **Permission:** `igniteleveling.command.statistics.help`
+
+
+- `/statistics <player>` — View another player's statistics  
+  **Permission:** `igniteleveling.command.statistics.help`
+
+
+- `/statistics top <statisticType>` — Show top players for a statistic  
+  **Permission:** `igniteleveling.command.statistics.top`
+
+
+- `/statistics top <player>` — Show a player's top rankings  
+  **Permission:** `igniteleveling.command.statistics.top`
 ## Placeholders
 
 Supports PlaceholderAPI placeholders such as:

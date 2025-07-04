@@ -30,6 +30,7 @@ public final class IgniteLeveling extends JavaPlugin {
     initializeDatabase(config);
     initializeTasks(config);
     registerListeners(Bukkit.getPluginManager());
+    IgniteLevelingAPI.init(this.levelingPlayerRepository);
   }
 
   private void initializeTasks(LevelingConfiguration config) {

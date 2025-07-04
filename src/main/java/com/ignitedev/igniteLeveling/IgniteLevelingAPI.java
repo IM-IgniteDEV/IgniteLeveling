@@ -15,7 +15,23 @@ import org.jetbrains.annotations.Nullable;
 @Getter
 public class IgniteLevelingAPI {
 
+  private static IgniteLevelingAPI INSTANCE;
+
   private final LevelingPlayerRepository playerRepository;
+
+  public static void init(@NotNull LevelingPlayerRepository playerRepository) {
+    if (INSTANCE == null) {
+      INSTANCE = new IgniteLevelingAPI(playerRepository);
+    }
+  }
+
+  /** Returns the singleton instance. */
+  public static IgniteLevelingAPI getInstance() {
+    if (INSTANCE == null) {
+      throw new IllegalStateException("IgniteLevelingAPI is not initialized!");
+    }
+    return INSTANCE;
+  }
 
   // --- Player management ---
 
@@ -55,7 +71,6 @@ public class IgniteLevelingAPI {
     Statistic stat = getStatistic(player, type);
     return stat != null ? stat.getLevel() : 0;
   }
-
 
   /**
    * Gets the experience of a player's statistic.

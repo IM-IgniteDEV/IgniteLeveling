@@ -157,6 +157,7 @@ public class LevelingConfiguration extends Config {
                   List.of(
                       new ItemStack(Material.DIAMOND, 1), new ItemStack(Material.GOLDEN_APPLE, 1)),
                   List.of("broadcast {PLAYER} got first level, well done!"),
+                  List.of("say one of that commands {PLAYER}", "say will be execcuted", "say Randomly", "say This is to give you ", "say chance to create random rewards"),
                   List.of("You got first level, well done! {PLAYER}"))),
           2,
           List.of(
@@ -165,6 +166,7 @@ public class LevelingConfiguration extends Config {
                       new ItemStack(Material.IRON_CHESTPLATE, 1),
                       new ItemStack(Material.GOLDEN_APPLE, 1)),
                   List.of("broadcast {PLAYER} got second level, well done!"),
+                  List.of("say one of that commands {PLAYER}", "say will be execcuted", "say Randomly", "say This is to give you ", "say chance to create random rewards"),
                   List.of("You got second level, well done! {PLAYER}"))),
           3,
           List.of(
@@ -173,5 +175,6 @@ public class LevelingConfiguration extends Config {
                       new ItemStack(Material.DIAMOND_SWORD, 1),
                       new ItemStack(Material.GOLDEN_APPLE, 1)),
                   List.of("broadcast {PLAYER} got third level, well done!"),
+                  List.of("say one of that commands {PLAYER}", "say will be execcuted", "say Randomly", "say This is to give you ", "say chance to create random rewards"),
                   List.of("You got third level, well done! {PLAYER}"))));
 }

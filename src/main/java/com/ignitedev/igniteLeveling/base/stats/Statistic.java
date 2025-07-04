@@ -3,8 +3,8 @@ package com.ignitedev.igniteLeveling.base.stats;
 import com.ignitedev.igniteLeveling.base.player.LevelingPlayer;
 import com.ignitedev.igniteLeveling.config.LevelingConfiguration;
 import com.twodevsstudio.simplejsonconfig.interfaces.Autowired;
+import java.util.Map;
 import lombok.Data;
-import org.bukkit.entity.Player;
 
 @Data
 public class Statistic {
@@ -12,45 +12,58 @@ public class Statistic {
   @Autowired private static LevelingConfiguration configuration;
 
   private final StatisticType statisticType;
-
   private final boolean isWorking;
 
   private int currentProgress = 0;
   private int level = 0;
   private long experience = 0;
 
-  public void incrementExperience(Player player, long experienceToAdd) {
+  public void incrementExperience(LevelingPlayer player, long experienceToAdd) {
     this.experience = this.experience + experienceToAdd;
+    int levelsToGain = 0;
 
-    long requiredExperience =
-        configuration.getLevelsRequiredExperience().get(this.statisticType).get(this.level + 1);
+    while (true) {
+      Long requiredExperience = getRequiredExperience(this.level + levelsToGain + 1);
 
-    if (this.experience >= requiredExperience) {
+      if (requiredExperience == null || this.experience < requiredExperience) {
+        break;
+      }
       this.experience = this.experience - requiredExperience;
-      // we pass surplus of experience to the next level
-      levelUp(player);
+      levelsToGain = levelsToGain + 1;
+    }
+    if (levelsToGain > 0) {
+      levelUp(player, levelsToGain);
     }
   }
 
   public void incrementProgress(LevelingPlayer player, int progressToAdd) {
-    this.currentProgress = this.currentProgress + progressToAdd;
-
-    int requiredActions = configuration.getStatisticRequiredActions().get(this.statisticType);
+    this.currentProgress = this.currentProgress +  progressToAdd;
+    int requiredActions = getStatisticValue(configuration.getStatisticRequiredActions());
 
     if (this.currentProgress % requiredActions == 0) {
-      int experienceReward = configuration.getStatisticExperienceReward().get(this.statisticType);
-
-      incrementExperience(
-          player.getPlayer(), Math.round(experienceReward * player.getBoosterMultiplier()));
-      this.currentProgress = 0;
+      int experienceReward = getStatisticValue(configuration.getStatisticExperienceReward());
+      incrementExperience(player, Math.round(experienceReward * player.getBoosterMultiplier()));
+      this.currentProgress = this.currentProgress % requiredActions;
     }
   }
 
-  public void levelUp(Player player) {
-    this.level = this.level + 1;
-    configuration
-        .getLevelsRewards()
-        .get(this.level)
-        .forEach(statisticReward -> statisticReward.grantReward(player));
+  public void levelUp(LevelingPlayer player, int levels) {
+    for (int i = 0; i < levels; i++) {
+      this.level = this.level + 1;
+      configuration
+          .getLevelsRewards()
+          .get(this.level)
+          .forEach(statisticReward -> statisticReward.grantReward(player));
+    }
+  }
+
+  private Long getRequiredExperience(int level) {
+    Map<Integer, Long> experienceMap =
+        configuration.getLevelsRequiredExperience().getOrDefault(this.statisticType, Map.of());
+    return experienceMap.get(level);
+  }
+
+  private int getStatisticValue(Map<StatisticType, Integer> statisticMap) {
+    return statisticMap.getOrDefault(this.statisticType, 0);
   }
 }

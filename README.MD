@@ -88,3 +88,5 @@ Supports PlaceholderAPI placeholders such as:
 ## TODO
 
 - add more statistics and system to make it disableable
+- add selection between gui and text for statistics/leaderboards/player profile
+- add API

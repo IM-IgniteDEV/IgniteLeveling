@@ -2,9 +2,11 @@ package com.ignitedev.igniteLeveling.base.stats;
 
 import com.ignitedev.igniteLeveling.base.player.LevelingPlayer;
 import com.ignitedev.igniteLeveling.config.LevelingConfiguration;
+import com.ignitedev.igniteLeveling.event.PlayerLevelUpEvent;
 import com.twodevsstudio.simplejsonconfig.interfaces.Autowired;
 import java.util.Map;
 import lombok.Data;
+import org.bukkit.Bukkit;
 
 @Data
 public class Statistic {
@@ -37,7 +39,7 @@ public class Statistic {
   }
 
   public void incrementProgress(LevelingPlayer player, int progressToAdd) {
-    this.currentProgress = this.currentProgress +  progressToAdd;
+    this.currentProgress = this.currentProgress + progressToAdd;
     int requiredActions = getStatisticValue(configuration.getStatisticRequiredActions());
 
     if (this.currentProgress % requiredActions == 0) {
@@ -48,6 +50,8 @@ public class Statistic {
   }
 
   public void levelUp(LevelingPlayer player, int levels) {
+    Bukkit.getPluginManager()
+        .callEvent(new PlayerLevelUpEvent(player, this.level, this.level + levels));
     for (int i = 0; i < levels; i++) {
       this.level = this.level + 1;
       configuration

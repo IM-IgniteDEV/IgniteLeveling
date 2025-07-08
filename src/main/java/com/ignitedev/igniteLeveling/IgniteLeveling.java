@@ -19,7 +19,8 @@ public final class IgniteLeveling extends JavaPlugin {
 
   private LevelingPlayerRepository levelingPlayerRepository;
 
-  @Getter private SimpleMongo simpleMongo;
+  @Getter
+  private SimpleMongo simpleMongo;
 
   @Override
   public void onEnable() {
@@ -63,6 +64,6 @@ public final class IgniteLeveling extends JavaPlugin {
 
   @Override
   public void onDisable() {
-    // Plugin shutdown logic
+    this.levelingPlayerRepository.getPlayersCache().values().forEach(levelingPlayerRepository::save);
   }
 }

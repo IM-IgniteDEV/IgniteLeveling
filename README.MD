@@ -23,12 +23,7 @@ player activities, rewards progress, and supports boosters and leaderboards.
 - Java 21+
 - MongoDB
 - PlaceholderAPI (for placeholders)
-
----
-
-## Configuration
-
-Edit `plugins/IgniteLeveling/leveling.json` to adjust experience values, rewards, blacklists, and messages.
+- Spigot 1.8.8 - 1.21.4
 
 ---
 

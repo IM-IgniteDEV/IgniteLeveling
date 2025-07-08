@@ -17,16 +17,24 @@ public class PlayerGainProgressEvent extends Event {
 
   private static final HandlerList HANDLER_LIST = new HandlerList();
 
-  /** The player who gained progress. */
+  /**
+   * The player who gained progress.
+   */
   private final LevelingPlayer levelingPlayer;
 
-  /** The player's progress before the update. */
+  /**
+   * The player's progress before the update.
+   */
   private final int oldProgress;
 
-  /** The player's progress after the update. */
+  /**
+   * The player's progress after the update.
+   */
   private final int newProgress;
 
-  /** Indicates whether the player gained experience as a result of the progress update. */
+  /**
+   * Indicates whether the player gained experience as a result of the progress update.
+   */
   private final boolean isExperienceUp;
 
   /**

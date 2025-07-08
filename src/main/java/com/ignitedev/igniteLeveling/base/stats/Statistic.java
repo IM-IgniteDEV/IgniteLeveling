@@ -6,7 +6,9 @@ import com.ignitedev.igniteLeveling.event.PlayerGainExperienceEvent;
 import com.ignitedev.igniteLeveling.event.PlayerGainProgressEvent;
 import com.ignitedev.igniteLeveling.event.PlayerLevelUpEvent;
 import com.twodevsstudio.simplejsonconfig.interfaces.Autowired;
+
 import java.util.Map;
+
 import lombok.Data;
 import org.bukkit.Bukkit;
 
@@ -17,7 +19,8 @@ import org.bukkit.Bukkit;
 @Data
 public class Statistic {
 
-  @Autowired private static LevelingConfiguration configuration;
+  @Autowired
+  private static LevelingConfiguration configuration;
 
   private final StatisticType statisticType; // Type of the statistic.
   private final boolean isWorking; // Indicates if the statistic is active.
@@ -29,7 +32,7 @@ public class Statistic {
   /**
    * Adds experience to the player and checks if they level up.
    *
-   * @param player The player whose experience is being incremented.
+   * @param player          The player whose experience is being incremented.
    * @param experienceToAdd The amount of experience to add.
    */
   public void incrementExperience(LevelingPlayer player, long experienceToAdd) {
@@ -63,7 +66,7 @@ public class Statistic {
   /**
    * Adds progress to the player and grants rewards if thresholds are met.
    *
-   * @param player The player whose progress is being incremented.
+   * @param player        The player whose progress is being incremented.
    * @param progressToAdd The amount of progress to add.
    */
   public void incrementProgress(LevelingPlayer player, int progressToAdd) {

@@ -17,7 +17,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 @RequiredArgsConstructor
 public class BlockBreakListener implements Listener {
 
-  @Autowired private static LevelingConfiguration configuration;
+  @Autowired
+  private static LevelingConfiguration configuration;
 
   private final IgniteLeveling igniteLeveling;
   private final LevelingPlayerRepository repository;

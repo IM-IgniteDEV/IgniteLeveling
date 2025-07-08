@@ -5,4 +5,4 @@ api-version: '1.21'
 authors: [ IgniteDEV ]
 description: Leveling and Statistics for players
 website: https://github.com/IM-IgniteDEV/
-softdepend: ["PlaceholderAPI"]
+softdepend: [ "PlaceholderAPI" ]

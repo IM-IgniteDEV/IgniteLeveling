@@ -4,13 +4,17 @@ import com.ignitedev.igniteLeveling.base.player.LevelingPlayer;
 import com.ignitedev.igniteLeveling.base.stats.Statistic;
 import com.ignitedev.igniteLeveling.base.stats.StatisticType;
 import com.ignitedev.igniteLeveling.repository.LevelingPlayerRepository;
+
 import java.util.UUID;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-/** Public API for interacting with the leveling, statistics, and boosters system. */
+/**
+ * Public API for interacting with the leveling, statistics, and boosters system.
+ */
 @RequiredArgsConstructor
 @Getter
 public class IgniteLevelingAPI {
@@ -25,7 +29,9 @@ public class IgniteLevelingAPI {
     }
   }
 
-  /** Returns the singleton instance. */
+  /**
+   * Returns the singleton instance.
+   */
   public static IgniteLevelingAPI getInstance() {
     if (INSTANCE == null) {
       throw new IllegalStateException("IgniteLevelingAPI is not initialized!");
@@ -52,7 +58,7 @@ public class IgniteLevelingAPI {
    * Gets the Statistic object for a player and type.
    *
    * @param player the player (not null)
-   * @param type the statistic type (not null)
+   * @param type   the statistic type (not null)
    * @return the Statistic object or null if not found
    */
   @Nullable
@@ -64,7 +70,7 @@ public class IgniteLevelingAPI {
    * Gets the level of a player's statistic.
    *
    * @param player the player (not null)
-   * @param type the statistic type (not null)
+   * @param type   the statistic type (not null)
    * @return the level, or 0 if not found
    */
   public int getStatisticLevel(@NotNull LevelingPlayer player, @NotNull StatisticType type) {
@@ -76,7 +82,7 @@ public class IgniteLevelingAPI {
    * Gets the experience of a player's statistic.
    *
    * @param player the player (not null)
-   * @param type the statistic type (not null)
+   * @param type   the statistic type (not null)
    * @return the experience value, or 0 if not found
    */
   public long getStatisticExperience(@NotNull LevelingPlayer player, @NotNull StatisticType type) {
@@ -88,7 +94,7 @@ public class IgniteLevelingAPI {
    * Gets the progress of a player's statistic.
    *
    * @param player the player (not null)
-   * @param type the statistic type (not null)
+   * @param type   the statistic type (not null)
    * @return the progress value, or 0 if not found
    */
   public int getStatisticProgress(@NotNull LevelingPlayer player, @NotNull StatisticType type) {
@@ -100,8 +106,8 @@ public class IgniteLevelingAPI {
    * Increments the experience of a player's statistic.
    *
    * @param player the player (not null)
-   * @param type the statistic type (not null)
-   * @param exp the amount of experience to add
+   * @param type   the statistic type (not null)
+   * @param exp    the amount of experience to add
    * @param plugin the IgniteLeveling plugin instance (not null)
    */
   public void incrementStatisticExperience(
@@ -118,10 +124,10 @@ public class IgniteLevelingAPI {
   /**
    * Increments the progress of a player's statistic.
    *
-   * @param player the player (not null)
-   * @param type the statistic type (not null)
+   * @param player   the player (not null)
+   * @param type     the statistic type (not null)
    * @param progress the amount of progress to add
-   * @param plugin the IgniteLeveling plugin instance (not null)
+   * @param plugin   the IgniteLeveling plugin instance (not null)
    */
   public void incrementStatisticProgress(
       @NotNull LevelingPlayer player,
@@ -139,9 +145,9 @@ public class IgniteLevelingAPI {
   /**
    * Grants a booster to the player.
    *
-   * @param player the player (not null)
-   * @param plugin the IgniteLeveling plugin instance (not null)
-   * @param duration booster duration in minutes
+   * @param player     the player (not null)
+   * @param plugin     the IgniteLeveling plugin instance (not null)
+   * @param duration   booster duration in minutes
    * @param multiplier booster multiplier
    */
   public void grantBooster(

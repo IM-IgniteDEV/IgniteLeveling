@@ -127,7 +127,7 @@ public class LevelingConfiguration extends Config {
           StatisticType.PLAYERS_KILLED, 100,
           StatisticType.PLAYER_DEATHS, 0,
           StatisticType.PLAY_TIME, 50 // every 50 minutes
-          );
+      );
 
   @Comment("How many experience required to gain next level")
   private Map<StatisticType, Map<Integer, Long>> levelsRequiredExperience =

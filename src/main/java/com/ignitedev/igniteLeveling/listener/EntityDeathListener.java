@@ -15,7 +15,8 @@ import org.bukkit.event.entity.EntityDeathEvent;
 @RequiredArgsConstructor
 public class EntityDeathListener implements Listener {
 
-  @Autowired private static LevelingConfiguration configuration;
+  @Autowired
+  private static LevelingConfiguration configuration;
 
   private final LevelingPlayerRepository repository;
 

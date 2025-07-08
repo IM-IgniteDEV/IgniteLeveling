@@ -13,7 +13,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 @RequiredArgsConstructor
 public class TrackPlayerTimeTask extends BukkitRunnable {
 
-  @Autowired private static LevelingConfiguration configuration;
+  @Autowired
+  private static LevelingConfiguration configuration;
 
   private final LevelingPlayer levelingPlayer;
 

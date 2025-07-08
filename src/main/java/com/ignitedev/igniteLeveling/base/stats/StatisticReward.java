@@ -3,8 +3,10 @@ package com.ignitedev.igniteLeveling.base.stats;
 import com.ignitedev.aparecium.util.MessageUtility;
 import com.ignitedev.aparecium.util.collection.RandomSelector;
 import com.ignitedev.igniteLeveling.base.player.LevelingPlayer;
+
 import java.util.List;
 import java.util.Random;
+
 import lombok.Data;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

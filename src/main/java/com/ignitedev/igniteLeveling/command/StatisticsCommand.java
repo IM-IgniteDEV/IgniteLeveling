@@ -10,7 +10,9 @@ import com.ignitedev.igniteLeveling.base.stats.StatisticType;
 import com.ignitedev.igniteLeveling.config.LevelingConfiguration;
 import com.ignitedev.igniteLeveling.repository.LevelingPlayerRepository;
 import com.twodevsstudio.simplejsonconfig.interfaces.Autowired;
+
 import java.util.List;
+
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
 
@@ -19,7 +21,8 @@ import org.bukkit.entity.Player;
 @RequiredArgsConstructor
 public class StatisticsCommand extends BaseCommand {
 
-  @Autowired private static LevelingConfiguration configuration;
+  @Autowired
+  private static LevelingConfiguration configuration;
 
   private final LevelingPlayerRepository repository;
 

@@ -1,6 +1,7 @@
 # IgniteLeveling
 
-IgniteLeveling is a plugin that introduces a comprehensive player leveling and statistics system. It tracks various player activities, rewards progress, and supports boosters and leaderboards.
+IgniteLeveling is a plugin that introduces a comprehensive player leveling and statistics system. It tracks various
+player activities, rewards progress, and supports boosters and leaderboards.
 
 
 ---
@@ -23,7 +24,6 @@ IgniteLeveling is a plugin that introduces a comprehensive player leveling and s
 - MongoDB
 - PlaceholderAPI (for placeholders)
 
-
 ---
 
 ## Configuration
@@ -35,11 +35,11 @@ Edit `plugins/IgniteLeveling/leveling.json` to adjust experience values, rewards
 ## Commands
 
 - `/booster` — View or manage boosters  
-**Permission:** `igniteleveling.command.booster`
+  **Permission:** `igniteleveling.command.booster`
 
 
 - `/booster activate <player> <duration> <multiplier>` — Activate a booster for a player  
-**Permission:** `igniteleveling.command.booster.activate`
+  **Permission:** `igniteleveling.command.booster.activate`
 
 
 - `/booster revoke <player>` — Revoke a player's booster  
@@ -270,11 +270,13 @@ Edit `plugins/IgniteLeveling/leveling.json` to adjust experience values, rewards
   }
 }
 ```
+
 ---
 
 ## Placeholders
 
 Supports PlaceholderAPI placeholders such as:
+
 - `%leveling_blocks_broken_level%`
 - `%leveling_blocks_broken_experience%`
 - `%leveling_blocks_broken_required_experience%`

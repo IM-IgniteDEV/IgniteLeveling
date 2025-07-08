@@ -14,7 +14,8 @@ import org.jetbrains.annotations.NotNull;
 @RequiredArgsConstructor
 public class LevelingExpansion extends PlaceholderExpansion {
 
-  @Autowired private static LevelingConfiguration configuration;
+  @Autowired
+  private static LevelingConfiguration configuration;
 
   private final LevelingPlayerRepository repository;
 
@@ -73,7 +74,7 @@ public class LevelingExpansion extends PlaceholderExpansion {
    * We specify the value identifier in this method. <br>
    * Since version 2.9.1 can you use OfflinePlayers in your requests.
    *
-   * @param player A {@link org.bukkit.OfflinePlayer OfflinePlayer}.
+   * @param player     A {@link org.bukkit.OfflinePlayer OfflinePlayer}.
    * @param identifier A String containing the identifier/value.
    * @return Possibly-null String of the requested identifier.
    */

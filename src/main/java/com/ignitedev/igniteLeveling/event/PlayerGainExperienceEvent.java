@@ -17,16 +17,24 @@ public class PlayerGainExperienceEvent extends Event {
 
   private static final HandlerList HANDLER_LIST = new HandlerList();
 
-  /** The player who gained experience. */
+  /**
+   * The player who gained experience.
+   */
   private final LevelingPlayer levelingPlayer;
 
-  /** The player's experience before the gain. */
+  /**
+   * The player's experience before the gain.
+   */
   private final long oldExperience;
 
-  /** The player's experience after the gain. */
+  /**
+   * The player's experience after the gain.
+   */
   private final long newExperience;
 
-  /** Indicates whether the player leveled up as a result of gaining experience. */
+  /**
+   * Indicates whether the player leveled up as a result of gaining experience.
+   */
   private final boolean isLevelUp;
 
   /**

@@ -18,7 +18,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @RequiredArgsConstructor
 public class LevelingPlayerRepository {
 
-  @Getter private final Map<UUID, LevelingPlayer> playersCache = new ConcurrentHashMap<>();
+  @Getter
+  private final Map<UUID, LevelingPlayer> playersCache = new ConcurrentHashMap<>();
 
   private final SimpleMongo simpleMongo;
 

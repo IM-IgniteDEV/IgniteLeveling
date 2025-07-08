@@ -11,7 +11,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 @RequiredArgsConstructor
 public class PlayersAutoSaveTask extends BukkitRunnable {
 
-  @Autowired private static LevelingConfiguration configuration;
+  @Autowired
+  private static LevelingConfiguration configuration;
 
   private final LevelingPlayerRepository repository;
 

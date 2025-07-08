@@ -17,7 +17,8 @@ import org.bukkit.event.player.PlayerMoveEvent;
 @RequiredArgsConstructor
 public class PlayerMoveListener implements Listener {
 
-  @Autowired private static LevelingConfiguration configuration;
+  @Autowired
+  private static LevelingConfiguration configuration;
 
   private final LevelingPlayerRepository repository;
 

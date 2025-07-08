@@ -19,7 +19,8 @@ import org.bukkit.entity.Player;
 @RequiredArgsConstructor
 public class BoosterCommand extends BaseCommand {
 
-  @Autowired private static LevelingConfiguration configuration;
+  @Autowired
+  private static LevelingConfiguration configuration;
 
   private final LevelingPlayerRepository repository;
   private final IgniteLeveling plugin;
@@ -40,11 +41,11 @@ public class BoosterCommand extends BaseCommand {
         player,
         configuration.getPrefix()
             + configuration
-                .getBoosterInfo()
-                .replace("{MULTIPLIER}", String.valueOf(byUUID.getBoosterMultiplier()))
-                .replace(
-                    "{TIME_LEFT}",
-                    DataUtility.convertMinutesToTimeString(byUUID.getBoosterDuration())));
+            .getBoosterInfo()
+            .replace("{MULTIPLIER}", String.valueOf(byUUID.getBoosterMultiplier()))
+            .replace(
+                "{TIME_LEFT}",
+                DataUtility.convertMinutesToTimeString(byUUID.getBoosterDuration())));
   }
 
   @Subcommand("activate|start")

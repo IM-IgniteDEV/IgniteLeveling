@@ -23,7 +23,8 @@ import java.util.UUID;
 @Data
 public class LevelingPlayer {
 
-  @Autowired private static LevelingConfiguration configuration;
+  @Autowired
+  private static LevelingConfiguration configuration;
 
   private final LevelingPlayerRepository repository;
 
@@ -69,9 +70,9 @@ public class LevelingPlayer {
         getPlayer(),
         configuration.getPrefix()
             + configuration
-                .getBoosterApplied()
-                .replace("{DURATION}", String.valueOf(duration))
-                .replace("{MULTIPLIER}", String.valueOf(multiplier)));
+            .getBoosterApplied()
+            .replace("{DURATION}", String.valueOf(duration))
+            .replace("{MULTIPLIER}", String.valueOf(multiplier)));
 
     this.boosterDuration = this.boosterDuration + duration;
     this.boosterMultiplier = this.boosterMultiplier * multiplier;

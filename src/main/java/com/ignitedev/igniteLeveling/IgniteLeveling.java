@@ -1,7 +1,11 @@
 package com.ignitedev.igniteLeveling;
 
+import com.ignitedev.aparecium.acf.MessageType;
+import com.ignitedev.aparecium.acf.PaperCommandManager;
 import com.ignitedev.aparecium.database.MongoDBConnection;
 import com.ignitedev.aparecium.database.SimpleMongo;
+import com.ignitedev.igniteLeveling.command.BoosterCommand;
+import com.ignitedev.igniteLeveling.command.StatisticsCommand;
 import com.ignitedev.igniteLeveling.config.LevelingConfiguration;
 import com.ignitedev.igniteLeveling.listener.*;
 import com.ignitedev.igniteLeveling.repository.LevelingPlayerRepository;
@@ -12,8 +16,11 @@ import com.twodevsstudio.simplejsonconfig.api.Config;
 import lombok.Getter;
 import org.bson.Document;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Locale;
 
 public final class IgniteLeveling extends JavaPlugin {
 
@@ -30,8 +37,36 @@ public final class IgniteLeveling extends JavaPlugin {
 
     initializeDatabase(config);
     initializeTasks(config);
+    registerCommands();
     registerListeners(Bukkit.getPluginManager());
     IgniteLevelingAPI.init(this.levelingPlayerRepository);
+  }
+
+  private void registerCommands() {
+    PaperCommandManager paperCommandManager = new PaperCommandManager(this);
+
+    paperCommandManager.addSupportedLanguage(Locale.ENGLISH);
+    paperCommandManager.setFormat(
+        MessageType.ERROR,
+        ChatColor.BLACK,
+        ChatColor.DARK_BLUE,
+        ChatColor.DARK_GREEN,
+        ChatColor.DARK_AQUA,
+        ChatColor.DARK_RED,
+        ChatColor.DARK_PURPLE,
+        ChatColor.GOLD,
+        ChatColor.GRAY,
+        ChatColor.DARK_GRAY,
+        ChatColor.BLUE,
+        ChatColor.GREEN,
+        ChatColor.AQUA,
+        ChatColor.RED,
+        ChatColor.LIGHT_PURPLE,
+        ChatColor.YELLOW,
+        ChatColor.WHITE);
+
+    paperCommandManager.registerCommand(new BoosterCommand(this.levelingPlayerRepository, this));
+    paperCommandManager.registerCommand(new StatisticsCommand(this.levelingPlayerRepository));
   }
 
   private void initializeTasks(LevelingConfiguration config) {

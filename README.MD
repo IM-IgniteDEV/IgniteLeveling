@@ -29,31 +29,31 @@ player activities, rewards progress, and supports boosters and leaderboards.
 
 ## Commands
 
-- `/booster` — View or manage boosters  
+- `/booster` - View or manage boosters  
   **Permission:** `igniteleveling.command.booster`
 
 
-- `/booster activate <player> <duration> <multiplier>` — Activate a booster for a player  
+- `/booster activate <player> <duration> <multiplier>` - Activate a booster for a player  
   **Permission:** `igniteleveling.command.booster.activate`
 
 
-- `/booster revoke <player>` — Revoke a player's booster  
+- `/booster revoke <player>` - Revoke a player's booster  
   **Permission:** `igniteleveling.command.booster.revoke`
 
 
-- `/statistics` or `/stats` — View your statistics  
+- `/statistics` or `/stats` - View your statistics  
   **Permission:** `igniteleveling.command.statistics.help`
 
 
-- `/statistics <player>` — View another player's statistics  
+- `/statistics <player>` - View another player's statistics  
   **Permission:** `igniteleveling.command.statistics.help`
 
 
-- `/statistics top <statisticType>` — Show top players for a statistic  
+- `/statistics top <statisticType>` - Show top players for a statistic  
   **Permission:** `igniteleveling.command.statistics.top`
 
 
-- `/statistics top <player>` — Show a player's top rankings  
+- `/statistics top <player>` - Show a player's top rankings  
   **Permission:** `igniteleveling.command.statistics.top`
 
 ---
@@ -362,9 +362,9 @@ IgniteLevelingAPI.getInstance().revokeBooster(player);
 
 IgniteLeveling exposes several events you can listen to in your plugin:
 
-- `PlayerLevelUpEvent` — fired when a player levels up in any statistic
-- `PlayerGainProgressEvent` — fired when a player gains progress in a statistic
-- `PlayerGainExperienceEvent` — fired when a player gains experience in a statistic
+- `PlayerLevelUpEvent` - fired when a player levels up in any statistic
+- `PlayerGainProgressEvent` - fired when a player gains progress in a statistic
+- `PlayerGainExperienceEvent` - fired when a player gains experience in a statistic
 
 ---
 
